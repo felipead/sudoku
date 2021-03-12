@@ -41,6 +41,23 @@ class SudokuBoard:
                 row += 1
                 column = 0
 
+    def validate_rows(self) -> bool:
+        occurrences = {(i + 1): 0 for i in range(9)}
+
+        for column in range(9):
+            for row in range(9):
+                value = self.get(row, column)
+                occurrences[value] += 1
+
+            for count in occurrences.values():
+                if count != 1:
+                    return False
+
+            for i in occurrences:
+                occurrences[i] = 0
+
+        return True
+
 # Draft/Legacy code below ↓
 
 #

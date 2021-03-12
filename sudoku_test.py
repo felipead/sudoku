@@ -1,5 +1,7 @@
 from typing import List
 
+from parameterized import parameterized
+
 from sudoku import SudokuBoard
 
 
@@ -16,7 +18,7 @@ class TestSudokuBoard:
             for column in range(9):
                 assert board.get(row, column) == 0
 
-    def test_load_input_string(self):
+    def test_load_input_string_representing_a_9x9_board(self):
         input_string = (
             '957613284'
             '483257196'
@@ -40,3 +42,42 @@ class TestSudokuBoard:
         assert printable_row(board.get_row(6)) == '845792613'
         assert printable_row(board.get_row(7)) == '291436875'
         assert printable_row(board.get_row(8)) == '736185429'
+
+    def test_validate_rows_when_all_rows_are_valid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178364952'
+            '524971368'
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_rows() is True
+
+    @parameterized.expand([
+        ['123456788'],
+        ['111111111'],
+        ['178364953']
+    ])
+    def test_validate_rows_when_all_one_row_is_invalid(self, invalid_row):
+        input_string = (
+                '957613284' +
+                '483257196' +
+                '612849537' +
+                invalid_row +
+                '524971368' +
+                '369528741' +
+                '845792613' +
+                '291436875' +
+                '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_rows() is False
