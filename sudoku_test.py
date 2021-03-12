@@ -65,7 +65,7 @@ class TestSudokuBoard:
         ['111111111'],
         ['178364953']
     ])
-    def test_validate_rows_when_all_one_row_is_invalid(self, invalid_row):
+    def test_validate_rows_when_a_row_is_invalid(self, invalid_row):
         input_string = (
                 '957613284' +
                 '483257196' +
@@ -81,3 +81,37 @@ class TestSudokuBoard:
         board.load(input_string)
 
         assert board.validate_rows() is False
+
+    def test_validate_columns_when_all_columns_are_valid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178364952'
+            '524971368'
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_columns() is True
+
+    def test_validate_columns_when_a_column_is_invalid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178364952'
+            '524791368'  # <= swapping values from the fifth row in the fourth column
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_columns() is False
