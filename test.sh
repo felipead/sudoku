@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-pipenv run pytest
+pipenv run pytest --verbose

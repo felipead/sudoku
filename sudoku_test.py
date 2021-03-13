@@ -115,3 +115,38 @@ class TestSudokuBoard:
         board.load(input_string)
 
         assert board.validate_columns() is False
+
+    def test_validate_3x3_cells_when_all_cells_are_valid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178364952'
+            '524971368'
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_cells() is True
+
+    def test_validate_3x3_cells_when_all_one_cell_is_not_valid(self):
+        bogus = '8'
+        input_string = (
+                '957613284'
+                '483257196'
+                '612849537'
+                '178364952'
+                '5249' + bogus + '1368' +
+                '369528741'
+                '845792613'
+                '291436875'
+                '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate_cells() is False
