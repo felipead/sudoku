@@ -150,3 +150,37 @@ class TestSudokuBoard:
         board.load(input_string)
 
         assert board.validate_cells() is False
+
+    def test_validate_a_board_that_is_completely_valid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178364952'
+            '524971368'
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate() is True
+
+    def test_validate_a_board_that_is_invalid(self):
+        input_string = (
+            '957613284'
+            '483257196'
+            '612849537'
+            '178634952'
+            '524971368'
+            '369528741'
+            '845792613'
+            '291436875'
+            '736185429'
+        )
+        board = SudokuBoard()
+        board.load(input_string)
+
+        assert board.validate() is False

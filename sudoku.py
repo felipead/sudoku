@@ -34,6 +34,13 @@ class SudokuBoard:
                 row += 1
                 column = 0
 
+    def validate(self) -> bool:
+        return (
+                self.validate_rows() and
+                self.validate_columns() and
+                self.validate_cells()
+        )
+
     def validate_rows(self) -> bool:
         occurrences = self._new_occurrences_map()
 
