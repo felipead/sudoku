@@ -2,10 +2,6 @@ from typing import List, Dict
 
 
 class SudokuBoard:
-    """
-    http://www.cross-plus-a.com/sudoku.htm
-    """
-
     def __init__(self, size=9):
         self._board = [
             [0 for _ in range(size)]
