@@ -10,7 +10,7 @@ Algorithms to validate a Sudoku board. See: http://www.cross-plus-a.com/sudoku.h
 ## Setup
 
 ```
-pipenv install
+pipenv install --dev
 ```
 
 ## Run unit tests
